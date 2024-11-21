@@ -31,3 +31,17 @@ app.post("/api/cars", (request, response) => {
   console.log(brand);
   response.send("Car submitted successfully");
 });
+
+// mongoose Instantiate
+const mongoose = require("mongoose");
+mongoose
+  .connect("mongodb://localhost:27017/myDatabase", {
+    // useNewurlParser: true,
+    // useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Connection Successful");
+  })
+  .catch(() => {
+    console.log("Recieved an Error");
+  });
