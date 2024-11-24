@@ -33,43 +33,9 @@ exports.createComment = async (req, res) => {
       post: updatedPost,
     });
   } catch (error) {
+    console.error("Error:", error.message);
     res.status(500).json({
       error: "Error While Creating Comment",
     });
   }
 };
-
-// exports.createComment = async (req, res) => {
-//   try {
-//     const { post, user, body } = req.body;
-
-//     if (!post || !user || !body) {
-//       return res.status(400).json({ error: "All fields are required" });
-//     }
-
-//     if (!mongoose.Types.ObjectId.isValid(post)) {
-//       return res.status(400).json({ error: "Invalid Post ID" });
-//     }
-
-//     const comment = new Comment({ post, user, body });
-//     const savedComment = await comment.save();
-
-//     const updatedPost = await Post.findByIdAndUpdate(
-//       post,
-//       { $push: { comments: savedComment._id } },
-//       { new: true }
-//     )
-//       .populate("comments")
-//       .exec();
-
-//     res.status(201).json({
-//       message: "Comment created successfully",
-//       post: updatedPost,
-//     });
-//   } catch (error) {
-//     console.error("Error:", error.message);
-//     res.status(500).json({
-//       error: "Error While Creating Comment",
-//     });
-//   }
-// };
